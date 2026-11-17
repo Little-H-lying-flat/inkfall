@@ -1,3 +1,7 @@
+// INKFALL — the entrypoint for the best-game-01 entry: a Chinese ink-painting slash game
+// where the player drags the mouse to cut ink spirits drifting down the page.
+// This program hands the entry in: it copies game/ and screenshots/ from beside this file
+// to /output and writes /output/dossier.json, the summary the judge reads.
 // A working best-game-01 entry (Node 22, standard library only): the game is this directory's
 // game/ folder, plain static files a desktop browser loads offline (game/index.html and its ES
 // modules, no library and no network request), and the program hands it in. It copies game/ and
@@ -31,6 +35,7 @@ if (existsSync(join(here, 'screenshots'))) cpSync(join(here, 'screenshots'), joi
 // screenshots/ and dossier.json).
 writeFileSync(
   join(out, 'dossier.json'),
+  // Caps, in plain words: at most 4 screenshots, each at most 256 KiB; game/ at most 993 files and 48 MiB.
   buildDossier(out, {
     text_max_bytes: 163840,
     screenshots: { max: 4, max_bytes: 262144 },
